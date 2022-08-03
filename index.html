@@ -70,7 +70,14 @@
 		</div>
 	</div>
 <script>
-	var test = '';
+	
+$(document).ready(function(){
+	$("#search").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	       searchUser();
+	      }
+	});
+});	
 function searchUser()
 {
 	var query = $('#search').val();
@@ -78,8 +85,7 @@ function searchUser()
 	$('#searchresult_wrapper').show();
 	$.ajax({url: "https://api.github.com/search/users?q="+query, 
                         success: function(result) {
-                    //console.log(result.items);
-                   // test = result.items;
+                   
                     createCard(result.items);
                 }});
 }
